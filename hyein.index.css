@@ -1,0 +1,339 @@
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.header {
+    display: flex;
+    background-color: blanchedalmond;
+    height: 72px;
+    padding: 0 70px;
+
+    /*
+     * display: flex는 축을 가지며
+     * 기본적으로 축은 row(-> 방향)
+     * justify-content는 축 방향 정렬(row라면 가로 정렬, column일 때는 세로 정렬)
+     * align-items는 축 수직 방향 정렬(row라면 세로 정렬, column일 때는 가로 정렬)
+     */
+    justify-content: space-between;
+    align-items: center;
+
+    /* 상단에 고정 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* header 안에있는 img 선택 */
+.header img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* 요소 사이 여백 */
+}
+
+.nav-list {
+    display: inline;
+    font-size: 16px;
+}
+
+/*
+ * #은 id를 이용한 선택
+ * #nav-contact는 id="nav-contact"인 요소 선택
+ */
+#nav-contact {
+    display: flex;
+    align-items: center;
+
+    height: 40px;
+    padding: 0 20px;
+    
+    border: 1px solid #4b7dc0;
+    border-radius: 4px; /* 모서리를 둥글게 */
+
+    color: #fff;
+}
+
+/* id="nav-contact" 요소에 마우스를 올렸을 때 */
+#nav-contact:hover {
+    background-color: #fff;
+    color: black;
+}
+
+/* id="nav-contact" 요소를 누르고 있을 때 */
+#nav-contact:active {
+    background-color: rgb(125, 203, 251);
+}
+
+a {
+    text-decoration: none; /* a 요소의 밑줄 제거 */
+    color: inherit; /* 글씨 색을 상위 요소랑 같은 색상으로 사용 */
+}
+
+main {
+    /*
+     * 헤더가 고정적으로 위에서 72px만큼을
+     * 덮고 있기 때문에 (position: absolute, height: 72px)
+     * 가려져서 보이지 않음
+     * 그래서 헤더 높이인 72px만큼 margin을 줘서
+     * 위로부터 떨어뜨림
+     */
+    margin-top: 72px;
+}
+
+#first {
+    display: flex;
+    flex-direction: column; /* 축을 세로 방향으로 설정 */
+    align-items: flex-start; /* 축이 세로 방향이므로 수직인 가로 방향 정렬, flex-start는 시작 위치로 정렬됨 */
+    gap: 20px;
+
+    padding: 120px;
+    max-width: 1280px;
+
+    /*
+     * 세로 방향 margin(top, bottom)은 0
+     * 가로 방향 margin(left, right)는 auto
+     * auto는 남은 여백을 자동으로 활용하여 채움
+     * 여기서는 left와 right가 균등하게 나누어가짐
+     * 보통 가운데 정렬을 위해 margin: 0 auto; 를 사용
+     */
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1280px; /* 최대 너비 설정 */
+}
+
+.title-set {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sub-heading {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.3; /* 행 사이 간격, 폰트 크기의 1.3배 */
+    letter-spacing: -0.1px; /* 글자 사이 간격 */
+}
+
+.description-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+}
+
+/* 버튼 */
+.btn {
+    display: flex; /* 기본 축 방향은 row */
+    align-items: center; /* 축에 수직(여기서는 세로)방향 중앙 정렬  */
+
+    height: 44px;
+    padding: 0 20px;
+    margin: 16px 0; /* 위 아래 16px씩 간격 */
+
+    border: 1px solid lightsalmon;
+    border-radius: 24px;
+
+    background-color: #4b7dc0;;
+    color: #fff;
+}
+
+/*
+ * btn 클래스가 있는 요소에
+ * 마우스를 올렸을 때
+ */
+.btn:hover {
+    background-color: #5498ad;
+    font-weight: 600;
+
+    /*
+     * scale, translateX, translateY 등으로
+     * 요소에 변형을 주는 방법
+     * scale은 크기를 몇 배 줄이고 늘리는 기능
+     * scale(1.5)는 1.5배 커짐
+     * translateX(30px)은 -> 로 30px 이동
+     * translateY(30px)은 아래로 30px 이동
+     */
+    transform: scale(1.5);
+    /* transform: translateX(30px); */
+    /* transform: translateY(30px); */
+
+    /*
+     * transition은 요소가 변화할 때
+     * 부드럽게 변화할 수 있도록 해주는 방법
+     * transition: 설정_속성 시간 설정_함수 로 구성
+     * 아래에서는 background-color의 색상만 0.2초간 ease-in-out
+     * 방식으로 변화하며, 만약 width가 변경된다면 설정되지 않았으므로 즉각 변경
+     * width를 부드럽게 변화하려면 transition: width 0.2s ease-in-out 이런 방식을 적용
+     */
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* 포트폴리오 */
+
+/*
+ * list 클래스가 갖는 스크롤바의 속성 설정
+ * 스크롤바가 안보이게 설정
+ */
+ .projects::-webkit-scrollbar {
+    display: none;
+}
+
+.projects {
+    display: flex;
+    gap: 24px;
+    
+    max-width: 1320px;
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 16px;
+    
+    /*
+     * 요소가 좌우 방향으로 자신에게 할당된 크기보다
+     * 더 많은 공간을 차지할 경우 scroll bar 생성
+     */
+    overflow-x: scroll;
+}
+
+.project-list-item {
+    display: flex;
+    /*
+     * 크기가 줄어드는 것을 막음
+     * 상위요소(.projects)가 display: flex이므로
+     * 하위 요소인 project-list-item은 공간을 유연하게 나누어 가짐
+     * 이때 공간이 좁으면 공간에 맞추기 위해 그 크기가 줄어드는데,
+     * 얼만큼 줄어들지는 flex-shrink에 따라 적용
+     * flex-shrink: 0일 때는 줄어들지 않음
+     */
+    flex-shrink: 0;
+
+    width: 480px;
+    height: 240px;
+    padding: 12px;
+
+    border: 1px solid black;
+    border-radius: 20px;
+    
+    background-color: #fff;
+    
+    transition: transform 0.125s ease-in-out;
+}
+
+.project-list-item:hover {
+    /* hover 시 1.05배 확대 */
+    transform: scale(1.05);
+}
+
+.project-thumbnail {
+    width: 240px;
+    height: 100%;
+
+    border-radius: 20px;
+
+    /*
+     * 이미지를 자신에게 할당된 크기 및 비율에
+     * 어떻게 맞출지 결정하는 방법
+     * 
+     * <예시>
+     * 이미지: 너비 100 x 높이 50
+     * 공간(요소 width, height): 너비 100 x 높이 25
+     * 이때 비율에 맞게 이미지를 표현하려면
+     * 1. cover
+     *  - 컨테이너를 채우는 방법
+     *  - 너비 100에 맞게 채워서 모자라는 이미지 25만큼은 짤림
+     * 2. contain
+     *  - 전체 이미지가 컨테이너에 들어갈 수 있도록 조정
+     *  - 높이 25에 맞추고 너비는 50으로 표현
+     * 3. fill
+     *  - 이미지의 비율을 무시하고 컨테이너에 억지로 맞추는 방법
+     *  - 높이 25에 맞추고 이미지를 늘려서 너비 100으로 표현
+     */
+    object-fit: cover;
+    /* object-fit: contain; */
+    /* object-fit: fill; */
+}
+
+.project-contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 8px;
+}
+
+.project-name {
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 4px;
+}
+
+.project-date {
+    font-size: 14px;
+    color: #6e6e6e;
+}
+
+.project-desc {
+    padding-top: 16px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+footer {
+    margin: 24px;
+}
+
+/*
+-- 삭제 --
+.heading {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.1px;
+}
+*/
+
+/* COLORS */
+/*
+ * 여러 곳에서 color: #... 을 입력하는 대신
+ * 클래스를 만들어 놓고 클래스만 넣어서 쉽게 색을 적용
+ */
+.text-color-primary {
+    color: #4b7dc0;
+}
+
+.text-color-default {
+    color: #242424;
+}
+/* ****** */
+
+/* BUTTONS */
+.btn-small {
+    padding: 8px 16px;
+    width: fit-content;
+    
+    border-radius: 5px;
+
+    background-color: #4b7dc0;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.btn-small:hover {
+    opacity: 0.95;
+}
